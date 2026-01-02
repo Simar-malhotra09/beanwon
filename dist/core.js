@@ -45,10 +45,25 @@ async function loadAnnotations() {
         ? result.annotations
         : [];
 }
-document.addEventListener("mouseup", async () => {
-    const anchor = getSelectionAnchor();
-    if (!anchor)
+document.addEventListener("keydown", async (e) => {
+    const isMac = navigator.platform.toUpperCase().includes("MAC");
+    const modifierPressed = isMac
+        ? e.metaKey && e.shiftKey
+        : e.ctrlKey && e.shiftKey;
+    if (!modifierPressed || e.key.toLowerCase() !== "a")
         return;
+    // Don't trigger while typing
+    const target = e.target;
+    if (target && ["INPUT", "TEXTAREA"].includes(target.tagName))
+        return;
+    if (target?.isContentEditable)
+        return;
+    e.preventDefault();
+    const anchor = getSelectionAnchor();
+    if (!anchor) {
+        alert("Select text first");
+        return;
+    }
     const note = prompt("Add note:");
     if (!note)
         return;

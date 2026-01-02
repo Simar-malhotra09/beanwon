@@ -69,9 +69,29 @@ async function loadAnnotations(): Promise<Annotation[]> {
     : [];
 }
 
-document.addEventListener("mouseup", async () => {
+
+
+document.addEventListener("keydown", async (e) => {
+  const isMac = navigator.platform.toUpperCase().includes("MAC");
+
+  const modifierPressed = isMac
+    ? e.metaKey && e.shiftKey
+    : e.ctrlKey && e.shiftKey;
+
+  if (!modifierPressed || e.key.toLowerCase() !== "a") return;
+
+  // Don't trigger while typing
+  const target = e.target as HTMLElement | null;
+  if (target && ["INPUT", "TEXTAREA"].includes(target.tagName)) return;
+  if (target?.isContentEditable) return;
+
+  e.preventDefault();
+
   const anchor = getSelectionAnchor();
-  if (!anchor) return;
+  if (!anchor) {
+    alert("Select text first");
+    return;
+  }
 
   const note = prompt("Add note:");
   if (!note) return;
