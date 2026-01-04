@@ -1,6 +1,6 @@
 "use strict";
 (() => {
-  // anchor.ts
+  // src/anchor.ts
   function getSelectionAnchor() {
     const sel = window.getSelection();
     if (!sel || sel.rangeCount === 0) return null;
@@ -40,7 +40,7 @@
     return null;
   }
 
-  // storage.ts
+  // src/storage.ts
   async function loadAnnotations() {
     const result = await chrome.storage.local.get("annotations");
     return Array.isArray(result.annotations) ? result.annotations : [];
@@ -64,7 +64,7 @@
     await chrome.storage.local.set({ annotations: filtered });
   }
 
-  // ui.ts
+  // src/ui.ts
   function createTooltip(note) {
     const tip = document.createElement("div");
     tip.textContent = note;
@@ -145,7 +145,7 @@
     });
   }
 
-  // core.ts
+  // src/core.ts
   function injectMarker(annotation) {
     const match = findAnchor(
       annotation.exact,

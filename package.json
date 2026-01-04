@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "esbuild core.ts --bundle --outfile=dist/core.js --format=iife && esbuild background.ts --bundle --outfile=dist/background.js --format=iife"
+    "build": "esbuild src/core.ts --bundle --outfile=dist/core.js --format=iife && esbuild background.ts --bundle --outfile=dist/background.js --format=iife"
   },
   "keywords": [],
   "author": "",
