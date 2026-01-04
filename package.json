@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild core.ts --bundle --outfile=dist/core.js --format=iife && esbuild background.ts --bundle --outfile=dist/background.js --format=iife"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/chrome": "^0.1.32"
+    "@types/chrome": "^0.1.32",
+    "esbuild": "^0.24.2"
   }
 }

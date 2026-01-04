@@ -1,4 +1,7 @@
 "use strict";
-chrome.runtime.onInstalled.addListener(() => {
+(() => {
+  // background.ts
+  chrome.runtime.onInstalled.addListener(() => {
     console.log("Annotator installed");
-});
+  });
+})();
