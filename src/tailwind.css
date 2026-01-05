@@ -1,0 +1,7 @@
+
+@tailwind utilities;
+
+.ext-tooltip {
+  all: initial;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
